@@ -1,0 +1,37 @@
+.login-container {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inner-login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px black solid;
+    padding-bottom: 50px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.logo-img {
+    border-radius: 10px;
+    width: 350px;
+}
+
+.welcome-title {
+    font-size: 25px;
+}
+
+.signin-btn {
+    width: 65%;
+    height: 40px;
+    border-radius: 10px;
+    border-color: transparent;
+    background-color: rgb(52, 54, 175);
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
