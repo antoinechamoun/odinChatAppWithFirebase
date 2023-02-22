@@ -1,12 +1,19 @@
-import { Navigate } from "react-router-dom";
-import { isUserSignedIn } from "../firebase/firebase";
+import { useUser } from "../context/UserContext";
+import Login from "../pages/Login";
+import Navbar from "./Navbar";
 
 const Body = () => {
-  if (isUserSignedIn()) {
-    console.log("hii");
-    return <div>Body</div>;
+  const { user } = useUser();
+
+  if (user.userName === "") {
+    return <Login />;
   }
-  return <Navigate to="/" />;
+
+  return (
+    <div className="body-container">
+      <Navbar />
+    </div>
+  );
 };
 
 export default Body;

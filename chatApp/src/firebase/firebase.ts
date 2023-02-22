@@ -4,7 +4,9 @@ import {
   getAuth,
   signInWithPopup,
   signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
+import { IUser } from "../types/types.user";
 
 const firebaseConfig = {
   apiKey: "AIzaSyACSj4EY6lXVDu_wfoB9WZwME0oYP6mUts",
@@ -17,11 +19,12 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+export const auth = getAuth(app);
 
+// functions
 export const SignIn = async () => {
   const provider = new GoogleAuthProvider();
-  await signInWithPopup(getAuth(), provider);
+  signInWithPopup(getAuth(), provider);
 };
 
 export const SignOut = () => {

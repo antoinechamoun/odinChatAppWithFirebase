@@ -1,31 +1,17 @@
-import { Navigate, useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
-import {
-  getProfilePicUrl,
-  getUserName,
-  isUserSignedIn,
-  SignIn,
-} from "../firebase/firebase";
+import { getProfilePicUrl, getUserName, SignIn } from "../firebase/firebase";
 
 const Login = () => {
-  const { user, changeUser } = useUser();
-  const navigate = useNavigate();
+  const { changeUser } = useUser();
+
   const handleSignIn = () => {
-    if (isUserSignedIn()) {
-      navigate(`/${user.userName}`);
-    } else {
-      SignIn();
-      let userName = getUserName();
-      let picUrl = getProfilePicUrl();
-      if (typeof userName === "string") {
-        changeUser(userName, picUrl);
-      }
+    SignIn();
+    let userName = getUserName();
+    let picUrl = getProfilePicUrl();
+    if (typeof userName === "string") {
+      changeUser(userName, picUrl);
     }
   };
-
-  if (user.userName) {
-    return <Navigate to={`/${user.userName}`} />;
-  }
 
   return (
     <div className="login-container">
