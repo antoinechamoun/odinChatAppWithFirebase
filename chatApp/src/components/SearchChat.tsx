@@ -1,4 +1,4 @@
-const SearchUser = () => {
+const SearchChat = () => {
   return (
     <form className="search-user-form">
       <input
@@ -10,4 +10,4 @@ const SearchUser = () => {
   );
 };
 
-export default SearchUser;
+export default SearchChat;

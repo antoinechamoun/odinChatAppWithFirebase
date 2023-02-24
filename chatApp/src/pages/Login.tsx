@@ -1,16 +1,8 @@
-import { useUser } from "../context/UserContext";
-import { getProfilePicUrl, getUserName, SignIn } from "../firebase/firebase";
+import { SignIn } from "../firebase/firebase";
 
 const Login = () => {
-  const { changeUser } = useUser();
-
   const handleSignIn = () => {
     SignIn();
-    let userName = getUserName();
-    let picUrl = getProfilePicUrl();
-    if (typeof userName === "string") {
-      changeUser(userName, picUrl);
-    }
   };
 
   return (

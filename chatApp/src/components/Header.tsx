@@ -3,11 +3,10 @@ import { AiOutlinePlus, AiOutlineLogout } from "react-icons/ai";
 import { SignOut } from "../firebase/firebase";
 
 const Header = () => {
-  const { user, changeUser } = useUser();
+  const { user, setShowUserSearchModal } = useUser();
 
   const handleSignOut = () => {
     SignOut();
-    changeUser("", "");
   };
 
   return (
@@ -17,7 +16,9 @@ const Header = () => {
         <h2>Chats</h2>
       </div>
       <div className="btns-container">
-        <button className="add-chat btn">
+        <button
+          className="add-chat btn"
+          onClick={() => setShowUserSearchModal(true)}>
           <AiOutlinePlus />
         </button>
         <button className="three-dots btn" onClick={() => handleSignOut()}>

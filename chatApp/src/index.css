@@ -171,3 +171,80 @@
     font-size: smaller;
     color: rgba(128, 128, 128, 0.9);
 }
+
+.search-user-modal {
+    visibility: hidden;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(128, 128, 128, 0.7);
+    z-index: 3;
+    height: 100%;
+    width: 100%;
+}
+
+.search-user-modal.show-modal {
+    visibility: visible;
+}
+
+.inner-search-user-modal {
+    border-radius: 10px;
+    width: 270px;
+    height: 270px;
+    background-color: whitesmoke;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-users-input {
+    outline: none;
+    width: 92%;
+    font-size: medium;
+    padding: 3px 10px;
+    height: 35px;
+    border-radius: 5px;
+    border: transparent;
+    background-color: rgba(128, 128, 128, 0.2);
+}
+
+.users-found {
+    flex: 1;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.user-found {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.user-found:hover {
+    background-color: rgba(128, 128, 128, 0.2);
+}
+
+.users-found-pic {
+    width: 25px;
+    border-radius: 50%;
+}
+
+.users-found-name {
+    font-size: 15px;
+}
+
+.close-modal-btn {
+    height: 35px;
+    background-color: rgb(182, 49, 182);
+    border: transparent;
+    border-radius: 5px;
+    color: white;
+    font-size: medium;
+    cursor: pointer;
+}
