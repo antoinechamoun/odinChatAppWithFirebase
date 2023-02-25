@@ -19,6 +19,7 @@ export const useUser = () => {
 };
 
 export const UserProvider = ({ children }: UserProviderProps) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useLocalStorage<IUser>("userInfo", {
     uid: "",
     email: "",
@@ -32,6 +33,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsLoading(true);
       if (user) {
         let userSnap: IUser = {
           uid: user.uid,
@@ -50,10 +52,13 @@ export const UserProvider = ({ children }: UserProviderProps) => {
             storeUserData(userSnap);
           }
         });
-        getUserChats(user.uid).then((res) => console.log(1, res));
+        getUserChats(user.uid).then((res) => {
+          setUserChats(res);
+        });
       } else {
         setUser({ uid: "", email: "", userName: "", profilePic: "" });
       }
+      setIsLoading(false);
     });
     return () => unsubscribe();
   }, []);
@@ -72,8 +77,10 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         usersFound,
         searchUser,
         setSearchUser,
+        userChats,
         showUserSearchModal,
         setShowUserSearchModal,
+        isLoading,
       }}>
       {children}
     </UserContext.Provider>

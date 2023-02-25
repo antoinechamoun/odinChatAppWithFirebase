@@ -100,7 +100,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 27%;
+    width: 350px;
     height: 100%;
     border-right: 1px rgba(128, 128, 128, 0.4) solid;
     padding: 15px;
@@ -247,4 +247,33 @@
     color: white;
     font-size: medium;
     cursor: pointer;
+}
+
+.chat-loader {
+    position: absolute;
+    top: 37%;
+    left: 60%;
+}
+
+.chats-loader {
+    position: absolute;
+    top: 20%;
+    left: 12%;
+}
+
+.chat-data-container {
+    position: absolute;
+    left: 380px;
+}
+
+.chat-header-user {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+
+.chat-header-container {
+    height: 80px;
+    width: 100vw;
+    background-color: red;
 }

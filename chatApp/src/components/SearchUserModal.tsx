@@ -1,5 +1,6 @@
 import { useUser } from "../context/UserContext";
 import { createNewChat } from "../firebase/firebase";
+import { IUser } from "../types/types.user";
 
 const SearchUserModal = () => {
   const {
@@ -10,8 +11,8 @@ const SearchUserModal = () => {
     usersFound,
   } = useUser();
 
-  const startChat = (uid: string) => {
-    createNewChat(user, uid);
+  const startChat = (sentToId: string) => {
+    createNewChat(user, sentToId);
     setShowUserSearchModal(false);
   };
 

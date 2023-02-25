@@ -1,8 +1,10 @@
+import { IMessage } from "./types.messages";
 import { IUser } from "./types.user";
 
 export interface IChat {
   chatId: string;
   createdBy: string;
-  sentTo: string;
-  members: IUser[];
+  date: string;
+  content: IMessage[];
+  members: string[];
 }

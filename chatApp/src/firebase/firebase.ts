@@ -110,11 +110,44 @@ export const createNewChat = async (createdBy: IUser, sentToId: string) => {
       createdBy: createdBy.uid,
       members: [createdBy.uid, sentToId],
       content: [],
-      date: Timestamp.now(),
+      date: Date.now(),
     });
   } catch (error) {
     console.log(error);
   }
+};
+
+export const getChatById = async (chatId: string): Promise<IChat> => {
+  let chat: IChat | undefined;
+  const q = query(collection(db, "chats"), where("chatId", "==", chatId));
+  const querySnap = await getDocs(q);
+  querySnap.forEach(
+    (doc) =>
+      (chat = {
+        chatId: doc.data().chatId,
+        content: doc.data().content,
+        createdBy: doc.data().createdBy,
+        date: doc.data().date,
+        members: doc.data().members,
+      })
+  );
+  return chat as IChat;
+};
+
+export const searchUserById = async (userId: string): Promise<IUser> => {
+  let user: IUser | undefined;
+  const q = query(collection(db, "users"), where("uid", "==", userId));
+  const querySnap = await getDocs(q);
+  querySnap.forEach(
+    (doc) =>
+      (user = {
+        uid: doc.data().uid,
+        email: doc.data().email,
+        userName: doc.data().name,
+        profilePic: doc.data().profilePic,
+      })
+  );
+  return user as IUser;
 };
 
 export const getUserChats = async (userId: string): Promise<IChat[]> => {
@@ -122,8 +155,9 @@ export const getUserChats = async (userId: string): Promise<IChat[]> => {
     {
       chatId: "",
       createdBy: "",
-      members: [{ email: "", profilePic: "", uid: "", userName: "" }],
-      sentTo: "",
+      members: [""],
+      date: "",
+      content: [{ message: "", date: "" }],
     },
   ];
   let counter = 0;
@@ -138,7 +172,8 @@ export const getUserChats = async (userId: string): Promise<IChat[]> => {
         chatId: doc.data().chatId,
         createdBy: doc.data().createdBy,
         members: doc.data().members,
-        sentTo: doc.data().sentTo,
+        content: doc.data().content,
+        date: doc.data().date,
       };
       counter++;
     } else {
@@ -148,7 +183,8 @@ export const getUserChats = async (userId: string): Promise<IChat[]> => {
           chatId: doc.data().chatId,
           createdBy: doc.data().createdBy,
           members: doc.data().members,
-          sentTo: doc.data().sentTo,
+          content: doc.data().content,
+          date: doc.data().date,
         },
       ];
     }

@@ -3,9 +3,10 @@ import Login from "../pages/Login";
 import ChatData from "./chats/ChatData";
 import Navbar from "./Navbar";
 import SearchUserModal from "./SearchUserModal";
+import ReactLoading from "react-loading";
 
 const Body = () => {
-  const { user } = useUser();
+  const { user, isLoading } = useUser();
 
   if (user.userName === "") {
     return <Login />;
@@ -15,7 +16,15 @@ const Body = () => {
     <div className="body-container">
       <SearchUserModal />
       <Navbar />
-      <ChatData />
+      {isLoading ? (
+        <ReactLoading
+          type="spin"
+          color="rgba(128, 128, 128, 0.7)"
+          className="chats-loader"
+        />
+      ) : (
+        <ChatData />
+      )}
     </div>
   );
 };

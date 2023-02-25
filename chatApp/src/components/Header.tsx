@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <div className="header-container">
       <div className="name-title">
-        <h1 className="user-letter">{user.userName.charAt(0).toUpperCase()}</h1>
+        <img src={user.profilePic} className="user-letter" />
         <h2>Chats</h2>
       </div>
       <div className="btns-container">
